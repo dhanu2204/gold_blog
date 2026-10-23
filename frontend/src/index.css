@@ -1,0 +1,116 @@
+/* Import elegant fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+/* Define our clean, premium color palette */
+:root {
+  --primary-gold: #C5B358;
+  --gold-hover: #D4AF37;
+  --bg-color: #FAFAFA;
+  --surface-color: #FFFFFF;
+  --text-dark: #1A1A1A;
+  --text-light: #666666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Use the elegant serif font for all headers to give it that jewelry brand feel */
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+
+/* A clean default for all buttons */
+button, input[type="submit"] {
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+/* --- Auth Pages (Login & Register) --- */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* A very soft gradient background */
+  background: linear-gradient(135deg, #FAFAFA 0%, #EAEAEA 100%);
+}
+
+.auth-card {
+  background: var(--surface-color);
+  padding: 3rem 4rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.auth-card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-gold);
+}
+
+.auth-card p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+}
+
+.auth-button {
+  background-color: var(--text-dark);
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: var(--primary-gold);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.auth-footer a {
+  color: var(--primary-gold);
+  text-decoration: none;
+  font-weight: 500;
+}
