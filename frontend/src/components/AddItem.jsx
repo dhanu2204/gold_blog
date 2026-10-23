@@ -36,11 +36,29 @@ const AddItem = () => {
         setImage(localPreview);
         setLoading(true);
 
+        const uploadFormData = new FormData();
+        uploadFormData.append('file', selectedImage);
+        fetch(`${import.meta.env.VITE_PRODUCTURL}api/products/upload`, {
+            method: 'POST',
+            body: uploadFormData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.imageUrl) {
+                setImageUrlInput(data.imageUrl); // Stores permanent S3 link!
+                toast.success('☁️ Uploaded to AWS S3!');
+            }
+        })
+        .catch(err => {
+            console.error('S3 upload error:', err);
+            toast.error('Could not upload to S3');
+        });
+
         try {
             const base64Data = await convertBase64(selectedImage);
             const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
             
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
             const payload = {
                 contents: [
