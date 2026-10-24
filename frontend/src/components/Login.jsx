@@ -33,6 +33,7 @@ const Login = () => {
         localStorage.setItem("jwttoken", data.token);
         localStorage.setItem("userRole", data.role);
         localStorage.setItem("userPhone", phonenumber);
+        
         toast.success("User Login Successful!")
         nav('/home')
       }

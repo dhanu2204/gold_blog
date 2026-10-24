@@ -65,7 +65,15 @@ public class ProductController {
             return ResponseEntity.status(500).body("Image upload failed: "+ e.getMessage());
         }
     }
-    
+    @PostMapping("/sync-designs")
+    public ResponseEntity<?> syncDesigns() {
+        try {
+            Map<String, Object> result = productService.syncAllDesignsToS3AndDatabase();
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("error", e.getMessage()));
+        }
+    }
 
     @PatchMapping ("/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable("id") Long id, @RequestBody Product product)

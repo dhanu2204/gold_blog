@@ -1,26 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 const AdminPanel = () => {
     const nav = useNavigate();
     const [totalProducts, setTotalProducts] = useState(0);
+    const [syncing, setSyncing] = useState(false);
+    const [syncResult, setSyncResult] = useState(null);
 
     // Fetch quick inventory count for the dashboard
-    useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                const res = await fetch(`${import.meta.env.VITE_PRODUCTURL}api/products`);
-                if (res.ok) {
-                    const data = await res.json();
-                    setTotalProducts(data.length);
-                }
-            } catch (err) {
-                console.error("Error fetching stats:", err);
+    const fetchStats = async () => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_PRODUCTURL}api/products`);
+            if (res.ok) {
+                const data = await res.json();
+                setTotalProducts(data.length);
             }
-        };
+        } catch (err) {
+            console.error("Error fetching stats:", err);
+        }
+    };
+
+    useEffect(() => {
         fetchStats();
     }, []);
+
+    const handleSyncDesigns = async () => {
+        if (!window.confirm("This will scan all images in frontend/public/designs, upload each to AWS S3, and insert product records into RDS MySQL. Do you want to proceed?")) {
+            return;
+        }
+        setSyncing(true);
+        const toastId = toast.loading("⚡ Uploading designs to AWS S3 & RDS... please wait a moment.");
+        try {
+            const res = await fetch(`${import.meta.env.VITE_PRODUCTURL}api/products/sync-designs`, {
+                method: 'POST'
+            });
+            const data = await res.json();
+            if (res.ok) {
+                toast.success(`🎉 Uploaded & saved ${data.totalProductsAdded} products to S3 & RDS!`, { id: toastId, duration: 6000 });
+                setSyncResult(data);
+                fetchStats();
+            } else {
+                toast.error(`Sync failed: ${data.error || 'Server error'}`, { id: toastId });
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("Network error during sync", { id: toastId });
+        } finally {
+            setSyncing(false);
+        }
+    };
 
     const menuItems = [
         {
@@ -210,6 +240,72 @@ const AdminPanel = () => {
                         </button>
                     </motion.div>
                 ))}
+            </div>
+
+            {/* Bulk S3 & Database Importer Banner */}
+            <div style={{
+                marginTop: '45px',
+                maxWidth: '1200px',
+                margin: '45px auto 0 auto',
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #262626 100%)',
+                borderRadius: '16px',
+                padding: '35px 40px',
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '25px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+                border: '1px solid #d4af37'
+            }}>
+                <div style={{ maxWidth: '680px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                        <span style={{ backgroundColor: '#d4af37', color: '#111', fontSize: '0.75rem', fontWeight: '800', padding: '3px 8px', borderRadius: '4px', textTransform: 'uppercase' }}>
+                            Automated Importer
+                        </span>
+                        <h3 style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '1.9rem', color: '#fff', margin: 0 }}>
+                            Sync 670+ Designs to AWS S3 & Database
+                        </h3>
+                    </div>
+                    <p style={{ margin: 0, color: '#bbb', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                        Scans all jewelry photos from <strong>frontend/public/designs/</strong> across all categories (Necklaces, Bangles, Rings, Earrings, Pendants, Bracelets, Chains, Nose Pins), automatically uploads each file to AWS S3 bucket <code>jewel-catalog</code>, obtains public S3 links, and saves catalog entries into RDS MySQL.
+                    </p>
+                    {syncResult && (
+                        <div style={{ marginTop: '15px', padding: '12px 18px', backgroundColor: 'rgba(212, 175, 55, 0.15)', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.4)' }}>
+                            <p style={{ margin: 0, color: '#ffd700', fontSize: '0.9rem', fontWeight: '700' }}>
+                                🎉 Success: Added {syncResult.totalProductsAdded} products to S3 & RDS!
+                            </p>
+                            <p style={{ margin: '6px 0 0 0', color: '#ddd', fontSize: '0.8rem' }}>
+                                {Object.entries(syncResult.categoryBreakdown || {}).map(([k, v]) => `${k}: ${v}`).join(' • ')}
+                            </p>
+                        </div>
+                    )}
+                </div>
+
+                <button
+                    onClick={handleSyncDesigns}
+                    disabled={syncing}
+                    style={{
+                        padding: '16px 32px',
+                        background: syncing ? '#666' : 'linear-gradient(135deg, #d4af37 0%, #aa820a 100%)',
+                        color: '#111',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontSize: '0.95rem',
+                        fontWeight: '800',
+                        letterSpacing: '0.5px',
+                        cursor: syncing ? 'not-allowed' : 'pointer',
+                        boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                        transition: 'all 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        whiteSpace: 'nowrap'
+                    }}
+                >
+                    {syncing ? '⏳ Uploading to S3 & RDS...' : '⚡ Upload All Designs to S3 & Database'}
+                </button>
             </div>
 
             {/* Quick Status Bar */}
