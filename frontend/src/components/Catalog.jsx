@@ -60,22 +60,22 @@ const Catalog = () => {
                 &larr; Back to Catalog
             </button>
           </div>
-            <h1 style={{ color: '#ffd700', textAlign: 'center', marginBottom: '30px' }}>
+            <h1 style={{ color: '#ffd700', textAlign: 'center', marginBottom: '25px', fontSize: 'clamp(1.4rem, 4.5vw, 2.2rem)', padding: '0 10px' }}>
           Explore Our {categoryName} Collection
             </h1>
 
-        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', alignItems: 'center', marginBottom: '35px', padding: '0 10px' }}>
           <input 
             type="text" 
             placeholder={`Search ${categoryName}...`} 
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ffd700', background: 'black', color: 'white', width: '300px' }}
+            style={{ padding: '10px 14px', borderRadius: '6px', border: '1px solid #ffd700', background: 'black', color: 'white', width: 'min(100%, 320px)', outline: 'none' }}
           />
-        <select 
+          <select 
             value={genderFilter} 
             onChange={(e) => setGenderFilter(e.target.value)}
-            style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ffd700', background: 'black', color: 'white' }}
+            style={{ padding: '10px 14px', borderRadius: '6px', border: '1px solid #ffd700', background: 'black', color: 'white', cursor: 'pointer', outline: 'none' }}
           >
             <option value="All">All Genders</option>
             <option value="Mens">Men's</option>
