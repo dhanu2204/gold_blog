@@ -45,7 +45,7 @@ const AddItem = () => {
         .then(res => res.json())
         .then(data => {
             if (data.imageUrl) {
-                setImageUrlInput(data.imageUrl); // Stores permanent S3 link!
+                setImageUrlInput(data.imageUrl);
                 toast.success('☁️ Uploaded to AWS S3!');
             }
         })
@@ -106,7 +106,7 @@ const AddItem = () => {
         e.preventDefault();
         setSubmitting(true);
 
-        // Determine image URL to store
+
         const finalImageUrl = imageUrlInput.trim() || image || '/designs/gold necklace/neck1.jpg';
 
         const productPayload = {
