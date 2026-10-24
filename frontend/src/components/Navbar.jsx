@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("jwttoken");
-        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userPhone");
         localStorage.removeItem("userRole");
         nav("/login");
     }

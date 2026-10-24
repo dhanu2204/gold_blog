@@ -10,9 +10,13 @@ const OrdersPage = () => {
 
     useEffect( () => {
         const fetchOrders = async() =>{
-            const userEmail = localStorage.getItem("userEmail");
+            const userPhone = localStorage.getItem("userPhone");
+            if (!userPhone) {
+                setLoading(false);
+                return;
+            }
             try {
-                const res = await fetch(`${import.meta.env.VITE_ORDERSURL}api/orders/history/${userEmail}`,{
+                const res = await fetch(`${import.meta.env.VITE_ORDERSURL}api/orders/history/${userPhone}`,{
                     method: "GET",
                     headers: {'Content-Type': 'application/json'}
                 })

@@ -16,9 +16,9 @@ public class OrdersService {
     @Autowired
     private OrdersRepository ordersRepository;
 
-    public List<Orders> getUserOrders(String userEmail) 
+    public List<Orders> getUserOrders(String userPhone) 
     {
-        return ordersRepository.findByUserEmail(userEmail);   
+        return ordersRepository.findByUserPhone(userPhone);   
     }
 
     public List<Orders> placeOrders(List<Orders> cartItems)

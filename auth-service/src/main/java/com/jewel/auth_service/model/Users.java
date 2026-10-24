@@ -19,7 +19,6 @@ public class Users {
     private Integer id;
 
     private String name;
-    private String email;
     private String phonenumber;
     private String password;
     private String role = "ROLE_USER";

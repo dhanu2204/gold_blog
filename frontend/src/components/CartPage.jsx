@@ -11,15 +11,15 @@ const CartPage = () => {
     const cartTotal = cart.reduce((total, item) => total + parseFloat(item.estimatedPrice), 0).toFixed(2);
 
             const handleOrders = async () => {
-        const email = localStorage.getItem("userEmail");
-        if (!email) {
+        const phone = localStorage.getItem("userPhone");
+        if (!phone) {
             toast.error("Please log in to checkout!");
             nav("/login");
             return;
         }
 
         const orderPayload = cart.map(item => ({
-            userEmail: email,
+            userPhone: phone,
             productId: item.id,
             productName: item.name,
             karat: item.karat,

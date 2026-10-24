@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 const Register = () => {
 
   const [name,setName] = useState("")
-  const [email,setEmail] = useState("")
   const [phonenumber,setPhonenumber] = useState("")
   const [password,setPassword] = useState("")
   const nav = useNavigate()
@@ -19,7 +18,7 @@ const Register = () => {
         headers:{
           'Content-Type':'application/json'
         },
-        body:JSON.stringify({name,email,phonenumber,password})
+        body:JSON.stringify({name,phonenumber,password})
     })
 
     if(res.ok)
@@ -31,7 +30,7 @@ const Register = () => {
     {
       const text = await res.text();
       if(text.includes("already")) {
-        alert("User already exists");
+        alert("Phone number already registered");
       } else {
         alert("Error: " + text);
       }
@@ -52,17 +51,13 @@ const Register = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
       <h2>Welcome</h2>
-      <p>Register to see the 
-        
-        best jewels</p>
+      <p>Register to see the best jewels</p>
       <form onSubmit={handleSubmit} className="auth-form">
-        <input className="auth-input" id="Name" type="text" placeholder="Enter full Name" value={name} onChange={(e)=> setName(e.target.value)}/>
+        <input className="auth-input" id="Name" type="text" placeholder="Enter full Name" value={name} onChange={(e)=> setName(e.target.value)} required/>
 
-        <input className="auth-input" id="Email" type="email" placeholder="Enter your Email Address" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <input className="auth-input" id="Phone" type="tel" placeholder="Enter your Phone Number" value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)} required/>
 
-        <input className="auth-input" id="Phone" type="text" placeholder="Enter your phonenumber" value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}/>
-
-        <input className="auth-input" id="Password" type="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
+        <input className="auth-input" id="Password" type="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)} required/>
 
         <input className="auth-button" type="submit" value="Sign Up" />
       </form>

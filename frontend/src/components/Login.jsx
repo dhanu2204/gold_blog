@@ -5,8 +5,8 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
 
-  const [email,setEmail]=useState("")
-  const [password,setPassword] = useState("")
+  const [phonenumber, setPhonenumber] = useState("")
+  const [password, setPassword] = useState("")
   const nav = useNavigate()
 
   const handleSubmit = async (e)=>{
@@ -18,15 +18,15 @@ const Login = () => {
           'Content-Type':'application/json',
         },
         body:JSON.stringify({
-          email,password
+          phonenumber, password
         })
       })
       if(res.ok)
       {
         const data = await res.json()
-        localStorage.setItem("jwttoken",data.token);
+        localStorage.setItem("jwttoken", data.token);
         localStorage.setItem("userRole", data.role);
-        localStorage.setItem("userEmail",email)
+        localStorage.setItem("userPhone", phonenumber);
         toast.success("User Login Successful!")
         nav('/home')
       }
@@ -51,11 +51,11 @@ const Login = () => {
         <p>Sign in to Dashboard</p>
         <form onSubmit={handleSubmit} className="auth-form">
             <input 
-              type="email" 
+              type="tel" 
               className="auth-input"
-              placeholder="Email Address"
-              value={email} 
-              onChange={(e)=>setEmail(e.target.value)}
+              placeholder="Phone Number"
+              value={phonenumber} 
+              onChange={(e)=>setPhonenumber(e.target.value)}
               required
             />
             <input 

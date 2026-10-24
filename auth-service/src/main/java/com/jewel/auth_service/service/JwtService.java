@@ -22,8 +22,8 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(String email) {
-        return Jwts.builder().setSubject(email).setIssuedAt(new Date(System.currentTimeMillis()))
+    public String generateToken(String phonenumber) {
+        return Jwts.builder().setSubject(phonenumber).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }

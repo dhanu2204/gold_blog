@@ -22,7 +22,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userEmail;
+    private String userPhone;
     private Long productId;
     private String productName;
     private int karat;

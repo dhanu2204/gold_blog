@@ -10,6 +10,6 @@ import com.jewel.order_service.model.Orders;
 @Repository 
 public interface OrdersRepository extends JpaRepository<Orders, Long>{
 
-    List<Orders> findByUserEmail(String userEmail);
+    List<Orders> findByUserPhone(String userPhone);
 
 }

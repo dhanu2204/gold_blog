@@ -252,12 +252,12 @@ const videos = ['/designs/videos/vid1.mp4', '/designs/videos/vid2.mp4'];
                   <p style={{ color: '#aaa', marginBottom: '20px', lineHeight: '1.6' }}>Join the exclusive club for preview launches, bespoke design ideas, and daily gold rate updates.</p>
                   <div style={{ display: 'flex' }}>
                       <input 
-                        type="email" 
-                        placeholder="Enter your email address" 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
                         style={{ padding: '15px', flex: 1, border: 'none', borderRadius: '5px 0 0 5px', outline: 'none' }} 
                       />
                       <button style={{ padding: '15px 30px', backgroundColor: '#d4af37', color: '#111', border: 'none', borderRadius: '0 5px 5px 0', cursor: 'pointer', fontWeight: 'bold', letterSpacing: '1px' }}>
-                        Subscribe
+                        Join Club
                       </button>
                   </div>
               </div>

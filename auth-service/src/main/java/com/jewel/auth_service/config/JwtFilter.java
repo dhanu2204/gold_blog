@@ -34,9 +34,9 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         String token = header.substring(7);
         try {
-            String email = jwtService.verifyToken(token);
-            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, null,
+            String phonenumber = jwtService.verifyToken(token);
+            if (phonenumber != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(phonenumber, null,
                         new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }

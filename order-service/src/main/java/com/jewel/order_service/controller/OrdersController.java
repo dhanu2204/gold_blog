@@ -23,10 +23,10 @@ public class OrdersController {
     @Autowired 
     private OrdersService ordersService;
 
-    @GetMapping("/history/{email}")
-    public ResponseEntity<?> getUserOrders(@PathVariable  String email)
+    @GetMapping("/history/{phone}")
+    public ResponseEntity<?> getUserOrders(@PathVariable("phone") String phone)
     {
-        List<Orders> existingorders =  ordersService.getUserOrders(email);
+        List<Orders> existingorders =  ordersService.getUserOrders(phone);
         if(existingorders.size() >= 1)
         {
             return ResponseEntity.ok(existingorders);
