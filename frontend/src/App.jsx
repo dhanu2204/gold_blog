@@ -14,6 +14,7 @@ import AdminPanel from './components/AdminPanel.jsx'
 import AddItem from './components/AddItem.jsx'
 import AllProducts from './components/AllProducts.jsx'
 import UpdateProduct from './components/UpdateProduct.jsx'
+import AdminRoute from './components/AdminRoute.jsx';
 
 const App = () => {
 
@@ -51,26 +52,27 @@ const App = () => {
             <OrdersPage/>
           </ProtectedRoutes>
         }/>
-        <Route path="/additem" element={
-          <ProtectedRoutes>
-            <AddItem/>
-          </ProtectedRoutes>
-        }/>
-        <Route path="/admin" element={
-          <ProtectedRoutes>
+                <Route path="/admin" element={
+          <AdminRoute>
             <AdminPanel/>
-          </ProtectedRoutes>
+          </AdminRoute>
+        }/>
+        <Route path="/additem" element={
+          <AdminRoute>
+            <AddItem/>
+          </AdminRoute>
         }/>
         <Route path="/getall" element={
-          <ProtectedRoutes>
+          <AdminRoute>
             <AllProducts/>
-          </ProtectedRoutes>
+          </AdminRoute>
         }/>
         <Route path="/update/" element={
-          <ProtectedRoutes>
+          <AdminRoute>
             <UpdateProduct/>
-          </ProtectedRoutes>
+          </AdminRoute>
         }/>
+
       </Routes>
     </BrowserRouter>
   )

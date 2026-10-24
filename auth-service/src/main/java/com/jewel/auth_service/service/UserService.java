@@ -42,7 +42,10 @@ public class UserService {
             return ResponseEntity.badRequest().body("Invalid Email or Password");
         }
         String token = jwtService.generateToken(email);
-        return ResponseEntity.ok(token);
+return ResponseEntity.ok(java.util.Map.of(
+    "token", token,
+    "role", user.getRole() != null ? user.getRole() : "ROLE_USER"
+));
     }
 
 }

@@ -23,8 +23,9 @@ const Login = () => {
       })
       if(res.ok)
       {
-        const token = await res.text()
-        localStorage.setItem("jwttoken",token);
+        const data = await res.json()
+        localStorage.setItem("jwttoken",data.token);
+        localStorage.setItem("userRole", data.role);
         localStorage.setItem("userEmail",email)
         toast.success("User Login Successful!")
         nav('/home')
