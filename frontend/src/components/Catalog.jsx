@@ -39,15 +39,15 @@ const Catalog = () => {
       fetchProducts();
     }, [])
     const filteredProducts = product.filter((p)=>{
-      const categoryMatch = p.category === categoryName;
-      const searchMatch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-      //const isMens = p.name.includes("MENS");
-      const isWomens = p.name.toLowerCase().includes("womens");
-      const isMens = !p.name.toLowerCase().includes("womens") && p.name.toLowerCase().includes("mens")
+      const categoryMatch = (p.category || '').toLowerCase().trim() === (categoryName || '').toLowerCase().trim();
+      const searchMatch = (p.name || '').toLowerCase().includes(searchQuery.toLowerCase());
+
+      const isWomens = (p.name || '').toLowerCase().includes("women") || p.category === "Bangles" || p.category === "Earrings" || p.category === "Nose Pins";
+      const isMens = (p.name || '').toLowerCase().includes("men") && !(p.name || '').toLowerCase().includes("women");
 
       let genderMatch = true;
-      if(genderFilter === "Mens") genderMatch = isMens
-      if(genderFilter === "Womens") genderMatch = isWomens;
+      if (genderFilter === "Mens") genderMatch = isMens;
+      if (genderFilter === "Womens") genderMatch = isWomens;
 
       return categoryMatch && searchMatch && genderMatch;
     })

@@ -177,10 +177,10 @@ const videos = ['/designs/videos/vid1.mp4', '/designs/videos/vid2.mp4'];
         ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', padding: '0 20px', width: '100%' }}>
           {[
-            'Necklaces','Rings','Bracelets','Earrings','Pendants','Bangles'
+            'Necklaces','Bangles','Earrings','Rings','Pendants','Bracelets','Chains','Nose Pins'
           ].map((categoryName) => {
 
-            const categoryProducts = product.filter(p => p.category === categoryName).slice(0, 4);
+            const categoryProducts = product.filter(p => (p.category || '').toLowerCase().trim() === categoryName.toLowerCase().trim()).slice(0, 4);
 
             return (
               <motion.div 
