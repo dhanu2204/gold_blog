@@ -253,7 +253,9 @@ const videos = ['/designs/videos/vid1.mp4', '/designs/videos/vid2.mp4'];
                   <div style={{ display: 'flex' }}>
                       <input 
                         type="tel" 
-                        placeholder="Enter your phone number" 
+                        maxLength={10}
+                        pattern="[0-9]{10}"
+                        placeholder="Enter 10-digit phone number" 
                         style={{ padding: '15px', flex: 1, border: 'none', borderRadius: '5px 0 0 5px', outline: 'none' }} 
                       />
                       <button style={{ padding: '15px 30px', backgroundColor: '#d4af37', color: '#111', border: 'none', borderRadius: '0 5px 5px 0', cursor: 'pointer', fontWeight: 'bold', letterSpacing: '1px' }}>

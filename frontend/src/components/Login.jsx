@@ -11,6 +11,12 @@ const Login = () => {
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
+
+    if (!/^\d{10}$/.test(phonenumber)) {
+      toast.error("Please enter a valid 10-digit phone number");
+      return;
+    }
+
     try {
       const res=await fetch(`${import.meta.env.VITE_BACKENDURL}user/auth/login`,{
         method:"POST",
@@ -53,9 +59,12 @@ const Login = () => {
             <input 
               type="tel" 
               className="auth-input"
-              placeholder="Phone Number"
+              placeholder="10-digit Phone Number"
               value={phonenumber} 
-              onChange={(e)=>setPhonenumber(e.target.value)}
+              maxLength={10}
+              pattern="[0-9]{10}"
+              title="Please enter exactly 10 digits"
+              onChange={(e)=>setPhonenumber(e.target.value.replace(/\D/g, '').slice(0, 10))}
               required
             />
             <input 

@@ -12,6 +12,12 @@ const Register = () => {
   
   const handleSubmit=async(e)=>{
     e.preventDefault()
+
+    if (!/^\d{10}$/.test(phonenumber)) {
+      toast.error("Phone number must be exactly 10 digits!");
+      return;
+    }
+
     try{
       const res = await fetch(`${import.meta.env.VITE_BACKENDURL}user/auth/register`,{
         method:"POST",
@@ -30,16 +36,16 @@ const Register = () => {
     {
       const text = await res.text();
       if(text.includes("already")) {
-        alert("Phone number already registered");
+        toast.error("Phone number already registered");
       } else {
-        alert("Error: " + text);
+        toast.error(text);
       }
     }
     }
     catch(e) {
-    alert("Something went wrong! Please try again.");
-    console.error(e);
-}
+      toast.error("Something went wrong! Please try again.");
+      console.error(e);
+    }
 
   }
   return (
@@ -55,7 +61,18 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="auth-form">
         <input className="auth-input" id="Name" type="text" placeholder="Enter full Name" value={name} onChange={(e)=> setName(e.target.value)} required/>
 
-        <input className="auth-input" id="Phone" type="tel" placeholder="Enter your Phone Number" value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)} required/>
+        <input 
+          className="auth-input" 
+          id="Phone" 
+          type="tel" 
+          placeholder="Enter 10-digit Phone Number" 
+          value={phonenumber} 
+          maxLength={10}
+          pattern="[0-9]{10}"
+          title="Please enter exactly 10 digits"
+          onChange={(e)=>setPhonenumber(e.target.value.replace(/\D/g, '').slice(0, 10))} 
+          required
+        />
 
         <input className="auth-input" id="Password" type="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)} required/>
 

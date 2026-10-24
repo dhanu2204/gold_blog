@@ -23,6 +23,9 @@ public class UserService {
     private JwtService jwtService;
 
     public ResponseEntity<?> registerUser(Users user) {
+        if (user.getPhonenumber() == null || !user.getPhonenumber().matches("^[0-9]{10}$")) {
+            return ResponseEntity.badRequest().body("Phone number must be exactly 10 digits");
+        }
         Optional<Users> existingUser = userRepository.findByPhonenumber(user.getPhonenumber());
         if (existingUser.isPresent()) {
             return ResponseEntity.badRequest().body("Phone number already registered");
@@ -36,6 +39,9 @@ public class UserService {
     }
 
     public ResponseEntity<?> loginUser(String phonenumber, String password) {
+        if (phonenumber == null || !phonenumber.matches("^[0-9]{10}$")) {
+            return ResponseEntity.badRequest().body("Phone number must be exactly 10 digits");
+        }
         Optional<Users> existingUser = userRepository.findByPhonenumber(phonenumber);
         if (existingUser.isEmpty()) {
             return ResponseEntity.badRequest().body("Invalid Phone Number or Password");
