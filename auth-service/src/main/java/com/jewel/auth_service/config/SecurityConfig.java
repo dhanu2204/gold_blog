@@ -32,8 +32,8 @@ public class SecurityConfig {
                         org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/auth/**").permitAll()
-                        .requestMatchers("/error").permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/user/auth/**", "/api/home", "/error").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }
@@ -41,8 +41,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://16.171.144.218"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

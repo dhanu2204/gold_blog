@@ -13,7 +13,6 @@ import com.jewel.auth_service.model.Users;
 import com.jewel.auth_service.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/user/auth")
 public class UserController {
 
