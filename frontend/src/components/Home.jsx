@@ -287,10 +287,14 @@ const Home = () => {
               
               <div style={{ flex: '1 1 280px' }}>
                   <h3 style={{ color: '#d4af37', marginBottom: '14px', letterSpacing: '1px', fontSize: '1.25rem' }}>Visit Us</h3>
-                  <p style={{ color: '#aaa', margin: '8px 0', lineHeight: '1.7', fontSize: '0.9rem' }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>  
-                    1237, Halladakeri, Mandi Mohalla, Mysuru, Karnataka 570001
-                  </p>
+                  <p 
+  onClick={() => window.open('https://maps.app.goo.gl/eQbRTCVFSWV64RSo8?g_st=aw', '_blank')}
+  style={{ color: '#aaa', margin: '8px 0', lineHeight: '1.7', fontSize: '0.9rem', cursor: 'pointer' }}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>  
+  1237, Halladakeri, Mandi Mohalla, Mysuru, Karnataka 570001
+</p>
+
                   <p style={{ color: '#aaa', margin: '8px 0', lineHeight: '1.7', fontSize: '0.9rem' }}>
                     <strong>Hours:</strong> 12:00 PM to 9:30 PM (Sunday Closed)
                   </p>
