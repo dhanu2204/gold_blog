@@ -192,7 +192,6 @@ const AdminPanel = () => {
                                 </span>
                             </div>
 
-                            {/* Card Title & Description */}
                             <h3 style={{ 
                                 fontFamily: '"Cormorant Garamond", serif', 
                                 fontSize: '1.6rem', 
@@ -207,7 +206,6 @@ const AdminPanel = () => {
                             </p>
                         </div>
 
-                        {/* Action Button */}
                         <button
                             onClick={() => nav(item.route)}
                             style={{
