@@ -230,7 +230,7 @@ const Catalog = () => {
                     alt={p.name} 
                     className="product-image" 
                     loading="lazy" 
-                    onError={(e) => { e.currentTarget.src = '/designs/gold necklace/030904ba-3f56-4c87-aa39-cd5d0f4520be.jpeg'; }}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80'; }}
                   />
                   <div className="product-info">
                     <div className="product-category">{p.category}</div>

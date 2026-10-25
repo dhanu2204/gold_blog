@@ -107,7 +107,7 @@ const AddItem = () => {
         setSubmitting(true);
 
 
-        const finalImageUrl = imageUrlInput.trim() || image || '/designs/gold necklace/neck1.jpg';
+        const finalImageUrl = imageUrlInput.trim() || image || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';
 
         const productPayload = {
             name: name,

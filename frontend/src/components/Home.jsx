@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import './Home.css';
 
 const CATEGORY_DATA = [
-  { name: 'Necklaces', cover: '/designs/gold necklace/030904ba-3f56-4c87-aa39-cd5d0f4520be.jpeg', tagline: 'Chokers, Bridal Sets & Royal Haars' },
-  { name: 'Bangles', cover: '/designs/bangles womens/03b20c36e716a617fd3e70267f6da0e8.jpg', tagline: 'Kadas, Filigree & Daily Bangles' },
-  { name: 'Earrings', cover: '/designs/womens earrings/006bbbb22c6e609027e12e088b29b77c.jpg', tagline: 'Jhumkas, Chandbalis & Daily Studs' },
-  { name: 'Rings', cover: '/designs/womens ring/0343a9f0e8f0b7c191316499a224a180.jpg', tagline: 'Cocktail, Couple Bands & Solitaires' },
-  { name: 'Pendants', cover: '/designs/womens pendant/02ae2b1e19487c5c0dbebb5083fc96eb.jpg', tagline: 'Temple, Lotus & Spiritual Lockets' },
-  { name: 'Bracelets', cover: '/designs/womens bracelets/06af781f5b666174f281f7f8b015f2e3.jpg', tagline: 'Delicate Charms & Men\'s Kadas' },
-  { name: 'Chains', cover: '/designs/mens neckchain/007a1aa4-33b5-4702-861f-c0c524b07cf0.jpeg', tagline: 'Solid Curb, Figaro & Classic Chains' },
-  { name: 'Nose Pins', cover: '/designs/womens nose pin/03445b6d068c12ff18e4ddb290464784.jpg', tagline: 'Dainty Floral & Single Stone Accents' }
+  { name: 'Necklaces', cover: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1000&q=80', tagline: 'Chokers, Bridal Sets & Royal Haars' },
+  { name: 'Bangles', cover: 'https://images.unsplash.com/photo-1611591475152-473524614946?auto=format&fit=crop&w=1000&q=80', tagline: 'Kadas, Filigree & Daily Bangles' },
+  { name: 'Earrings', cover: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1000&q=80', tagline: 'Jhumkas, Chandbalis & Daily Studs' },
+  { name: 'Rings', cover: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1000&q=80', tagline: 'Cocktail, Couple Bands & Solitaires' },
+  { name: 'Pendants', cover: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80', tagline: 'Temple, Lotus & Spiritual Lockets' },
+  { name: 'Bracelets', cover: 'https://images.unsplash.com/photo-1611591475152-473524614946?auto=format&fit=crop&w=1000&q=80', tagline: 'Delicate Charms & Men\'s Kadas' },
+  { name: 'Chains', cover: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=1000&q=80', tagline: 'Solid Curb, Figaro & Classic Chains' },
+  { name: 'Nose Pins', cover: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1000&q=80', tagline: 'Dainty Floral & Single Stone Accents' }
 ];
 
 const Home = () => {

@@ -235,7 +235,7 @@ const AllProducts = () => {
                         >
                             <div style={{ position: 'relative', height: '240px', backgroundColor: '#f5f5f5', overflow: 'hidden' }}>
                                 <img 
-                                    src={product.imageUrl && product.imageUrl !== 'image' ? product.imageUrl : '/designs/gold necklace/neck1.jpg'} 
+                                    src={product.imageUrl && product.imageUrl !== 'image' ? product.imageUrl : 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500'} 
                                     alt={product.name}
                                     onError={(e) => {
                                         e.target.onerror = null;
