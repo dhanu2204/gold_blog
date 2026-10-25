@@ -37,21 +37,4 @@ public class S3Service {
         s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
         return String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, fileName);
     }
-
-    public String uploadFile(java.io.File file, String contentType) {
-        String originalFilename = file.getName();
-        String extension = "";
-        if (originalFilename.contains(".")) {
-            extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-        }
-        String fileName = "products/" + UUID.randomUUID() + extension;
-        S3Client s3Client = S3Client.builder().region(Region.of(region)).build();
-        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(fileName)
-                .contentType(contentType != null ? contentType : "image/jpeg")
-                .build();
-        s3Client.putObject(putObjectRequest, RequestBody.fromFile(file));
-        return String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, fileName);
-    }
 }
