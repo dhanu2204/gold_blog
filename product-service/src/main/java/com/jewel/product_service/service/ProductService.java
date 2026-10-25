@@ -30,6 +30,10 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findByCategoryOrderByCreatedAtDesc(category);
+    }
+
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }

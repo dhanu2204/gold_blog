@@ -17,8 +17,15 @@ const CATEGORY_DATA = [
 const Home = () => {
   const [message, setMessage] = useState("");
   const [goldPrice, setGoldPrice] = useState(null);
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem("basaveshwara_products");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [loading, setLoading] = useState(false);
 
   const videoRef = useRef(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -68,7 +75,11 @@ const Home = () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_PRODUCTURL}api/products`);
         if (res.ok) {
-          setProduct(await res.json());
+          const data = await res.json();
+          setProduct(data);
+          try {
+            sessionStorage.setItem("basaveshwara_products", JSON.stringify(data));
+          } catch {}
         }
       } catch (e) {
         console.error("failed to fetch products", e);
